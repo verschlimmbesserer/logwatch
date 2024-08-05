@@ -1,0 +1,18 @@
+---
+# defaults file for logwatch
+logwatch_log_dir: /var/log
+logwatch_tmp_dir: /var/cache/logwatch
+logwatch_output: stdout
+logwatch_format: text
+logwatch_encode: none
+logwatch_mail_to: root
+logwatch_mail_from: Logwatch
+logwatch_filename: /tmp/logwatch
+logwatch_archives: "No"
+logwatch_range: yesterday
+logwatch_detail: Low
+logwatch_service: All
+logwatch_mailer: "/usr/sbin/sendmail -t"
+logwatch_cron_name: "run logwatch"
+logwatch_cron_minute: "30"
+logwatch_cron_hour: "0"

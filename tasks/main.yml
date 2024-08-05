@@ -1,0 +1,29 @@
+---
+# tasks file for logwatch
+- name: Install logwatch
+  ansible.builtin.apt:
+    name: logwatch
+    state: present
+
+- name: Create logwatch cache dir
+  ansible.builtin.file:
+    path: /var/cache/logwatch
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Configure Logwatch
+  ansible.builtin.template:
+    src: logwatch.conf.j2
+    dest: /usr/share/logwatch/default.conf/logwatch.conf
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Setup crontab for logwatch
+  ansible.builtin.cron:
+    name: "{{ logwatch_cron_name }}"
+    minute: "{{ logwatch_cron_minute }}"
+    hour: "{{ logwatch_cron_hour }}"
+    job: "/usr/sbin/logwatch"
